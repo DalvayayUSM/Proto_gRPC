@@ -1,0 +1,31 @@
+syntax = "proto3";
+package grpc;
+option go_package = "github.com/JaviCCJ/Lab2";
+
+
+message mensaje_combine{
+    string tipo = 1;
+    int32 id = 2;
+    string data = 3;
+}
+
+message mensaje_rebeldes{
+    string tipo = 1;
+}
+
+message pedido_data{
+    int32 id = 1;
+    string data = 2;
+}
+
+message conf{
+    string conf = 1;
+}
+
+service tarea{
+    rpc mandarInfo(stream pedido_data) returns (conf);
+    rpc solicitarInfo(mensaje_rebeldes) returns (conf);
+    rpc subirInfo(mensaje_combine) returns (conf);
+    rpc sacarInfo (pedido_data) returns (pedido_data);
+}
+
